@@ -4,7 +4,7 @@
 </head>
 <body>
 <?php
-echo '<p align="center" ><strong> Cтраница № 1 </strong></p>';
+echo '<p align="center" ><strong> Cтраница № 111 </strong></p>';
 echo $_SERVER["HTTP_USER_AGENT"]; echo '<br/>';
 echo $_SERVER["REQUEST_URI"];echo '<br/>';
 if (strpos($_SERVER['HTTP_USER_AGENT'], 'Chrome') == TRUE) {
@@ -31,7 +31,7 @@ echo '<br/>';
         <input name="music" type="checkbox" value="Rap"> Rap
         <input name="music" type="checkbox" value="Hard Metal">Hard Metal </p>
 
-    <p> Ваш темпрамент:
+    <p> Ваш темперамент:
         <input name="temp" type="radio" value="Сангвиник"> Сангвиник
         <input name="temp" type="radio" value="Меланхолик"> Меланхолик
         <input name="temp " type="radio" value="Холерик"> Холерик
