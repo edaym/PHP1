@@ -1,8 +1,14 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: UITS-Admin
- * Date: 09.02.2017
- * Time: 20:54
- */
-phpinfo();
+
+
+include 'menu.php';
+function show_menu($m){
+
+    foreach ($m as $point=>$massiv) {
+        echo $massiv["title"],"\t";
+    }
+}
+show_menu($menu);
+?>
+
+add function show_menu
