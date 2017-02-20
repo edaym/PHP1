@@ -2,13 +2,18 @@
 
 
 include 'menu.php';
-function show_menu($m){
+function show_menu($m, $type){
 
-    foreach ($m as $point=>$massiv) {
-        echo $massiv["title"],"\t";
+    foreach ($m as $massiv) {
+
+        if ($massiv["menu_type"]==$type) {
+            echo '<a href="' . $massiv["link"] . '", class="title">' . $massiv["title"] . '</a>' . "\n";
+        }
     }
 }
-show_menu($menu);
+show_menu($menu, "top");
+show_menu($menu, "left");
+show_menu($menu, "bottom");
 ?>
 
-add function show_menu
+
