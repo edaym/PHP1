@@ -40,6 +40,7 @@ function show_men($m, $type){
     echo "</ul>";
 }
 show_men($menu, "top");
+
 ?>
 
 
