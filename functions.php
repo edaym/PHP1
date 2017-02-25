@@ -10,7 +10,7 @@ function usortmenu($a, $b) {
 usort($menu, "usortmenu");
 print_r($menu);
 
-//сортировка массива меню по возрастаню с сохранением связи ключ-значение
+//сортировка массива меню по возрастанию с сохранением связи ключ-значение
 function uasortmenu($a, $b) {
     if ($a["position"]== $b["position"]){
         return 0;
@@ -19,3 +19,4 @@ function uasortmenu($a, $b) {
 };
 uasort($menu, "uasortmenu");
 print_r($menu);
+?>
