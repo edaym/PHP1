@@ -1,5 +1,5 @@
 <?php
-include 'menu.php';
+
 /*
 function show_menu($m, $type){
 echo "<ul>";
@@ -25,43 +25,30 @@ $filt=array_filter($menu, "filter_type");
 */
 
 include 'menu.php';
-$show_men=function($m) use ($menu){
-//function show_men($m, $type){
-    echo "<ul>";
-    function filt($menu)
+
+function show_menu($m){
+    echo "<ul class='main-nav'>\n";
+    function filt($m)
     {
-        return in_array("top", $menu["menu_type"]);
-    }; //функция замыкания closure.php
+        return in_array("top", $m["menu_type"]);
+    };
     $filt=array_filter($m, "filt");
-//функция usort ksort
+
     foreach ($filt as $massiv) {
-// if ($massiv["menu_type"]==$type) {
-        echo '<li><a href="' . $massiv["link"] . '", class="title">' . $massiv["title"] . '</a></li>' . "\n";
-// }
+        echo '<li class="item">', "\n", '<a href="' . $massiv["link"] . '"class="title">' . $massiv["title"] . '</a>',"\n",'</li>' . "\n";
+        echo "<ul class='sub-menu'>\n";
+        foreach ($massiv["children"] as $child) {
+            echo '<li class="item">', "\n", '<a href="' . $child["link"] . '"class="title">' . $child["title"].'</a>',"\n",'</li>' . "\n";
+        }
+        echo "</ul>\n";
     }
     echo "</ul>";
 };
-//show_men($menu, "top");
-$show_men($menu);
+show_menu($menu);
 
-/*
-function show_men($m) use ($menu){
-     echo "<ul>";
-      function filter($menu)
-       {
-         return in_array("top", $menu["menu_type"]);
-       }
-       $filt=array_filter($m, "filter");
-       print_r($filt);
-    foreach ($filt as $massiv) {
-        echo '<li><a href="' . $massiv["link"] . '", class="title">' . $massiv["title"] . '</a></li>' . "\n";
-    }
-     echo "</ul>";
-};
-show_men($menu);
-*/
+
+
 ?>
-
 
 
 
