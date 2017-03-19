@@ -24,44 +24,8 @@ $filt=array_filter($menu, "filter_type");
 //print_r($filt);
 */
 
-include 'menu.php';
-
-function numbers($array){
-    foreach ($array as $k => $v) {
-        echo "$ array $k => $v.\n";
-        numbers($array[$k+1]);
-    }
-}
-echo numbers($menu);
-
-
-
-/*
-function show_menu($m){
-    echo "<ul class='main-nav'>\n";
-    function filt($m)
-    {
-        return in_array("top", $m["menu_type"]);
-    };
-    $filt=array_filter($m, "filt");
-
-    foreach ($filt as $massiv) {
-        echo '<li class="item">', "\n", '<a href="' . $massiv["link"] . '"class="title">' . $massiv["title"] . '</a>',"\n",'</li>' . "\n";
-        echo "<ul class='sub-menu'>\n";
-        foreach ($massiv["children"] as $arr=>$child) {
-            echo '<li class="item">', "\n", '<a href="' . $child["link"] . '"class="title">' . $child["title"].'</a>',"\n",'</li>' . "\n";
-            //show_menu($massiv["children"]);
-            //show_menu($massiv[$arr+1][$child]);
-        }
-        echo "</ul>\n";
-       //show_menu($filt[$massiv]["children"]);
-    }
-    echo "</ul>";
-};
-show_menu($menu);
-
-*/
-
+include_once 'menu.php';
+include_once 'functions.php';
 
 
 /*
@@ -72,7 +36,8 @@ function filt($m)
 */
 
 
-
+#вывод меню, под меню, с сортировкой и active=true
+/*
 function show_menu($menu, $tmpl=['ul', 'li', 'a']){
     list($ul, $li, $a)=$tmpl;
     echo '<div align="center">', "<$ul class='main-nav'>\n";
@@ -105,9 +70,23 @@ function show_menu($menu, $tmpl=['ul', 'li', 'a']){
 
 //array_filter($menu, "filt");
 show_menu($menu);
-
+*/
 ?>
 
+<html>
+<link rel="stylesheet" href="style.css">
+<div class="topmenu">
+    <?php show_menu($menu, "top"); ?>
+</div>
+
+<div class="leftmenu">
+    <?php show_menu($menu, "left"); ?>
+</div>
+
+<div class="bottommenu">
+    <?php show_menu($menu, "bottom"); ?>
+</div>
+</html>
 
 
 
