@@ -24,46 +24,8 @@ $filt=array_filter($menu, "filter_type");
 //print_r($filt);
 */
 
-
-
-echo "\n";
-
-function factorial($num)
-{
-    if ($num < 0)
-    {
-        return 0;
-    }
-    if ($num == 0)
-    {
-        return 1;
-    }
-    return $num*factorial ($num-1);
-}
-echo factorial(3); // выведет 6
-
-echo "\n";
-
-function recursion($a)
-{
-    if ($a < 20) {
-        echo "$a\n";
-        recursion($a + 1);
-    }
-}
-echo recursion(4);
-
-
-
-
 include 'menu.php';
 
-$a = array(
-    "one" => 1,
-    "two" => 2,
-    "three" => 3,
-    "seventeen" => 17
-);
 function numbers($array){
     foreach ($array as $k => $v) {
         echo "$ array $k => $v.\n";
@@ -74,7 +36,7 @@ echo numbers($menu);
 
 
 
-
+/*
 function show_menu($m){
     echo "<ul class='main-nav'>\n";
     function filt($m)
@@ -98,10 +60,51 @@ function show_menu($m){
 };
 show_menu($menu);
 
+*/
 
 
 
+/*
+function filt($m)
+{
+    return in_array("top", $m["menu_type"]);
+};
+*/
 
+
+
+function show_menu($menu, $tmpl=['ul', 'li', 'a']){
+    list($ul, $li, $a)=$tmpl;
+    echo '<div align="center">', "<$ul class='main-nav'>\n";
+    $filt=array_filter($menu, function ($menu_point)
+    {
+        if ($menu_point["active"]==true){
+            return in_array("top", $menu_point["menu_type"]);
+        }
+    }
+    );
+
+    uasort($filt, function ($a, $b)
+    {   if ($a["position"] == $b["position"]) {
+        return 0;
+    }
+        return ($a["position"]>$b["position"]) ? 1 : -1;
+    }
+    );
+
+    foreach ($filt as $massiv) {
+        echo "<$li class='item'>", "\n", "<$a href='" . $massiv["link"] . "'class='title'>" . $massiv["title"] . '</$a>',"\n",'</$li>' . "\n";
+        echo "<$ul class='sub-menu'>\n";
+        if (isset($massiv["children"])){
+            show_menu ($massiv["children"]);
+        }
+        echo "</$ul>\n";
+    }
+    echo "</$ul>";
+};
+
+//array_filter($menu, "filt");
+show_menu($menu);
 
 ?>
 
