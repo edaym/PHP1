@@ -26,7 +26,7 @@ if (empty ($_SESSION['login'])) {
         $user = array();
         if (empty($_POST['name'])) {
             exit('Поле "Имя" не заполнено');
-        } elseif (!preg_match("/\w{2,}/", $_POST['name'])){ 
+        } elseif (!preg_match("/\w{2,}/", $_POST['name'])){
             exit('В имени должно быть больше двух символов');
         } else {
             $user['name'] = $_POST['name'];
@@ -34,7 +34,7 @@ if (empty ($_SESSION['login'])) {
 
         if (empty($_POST['email'])) {
             exit('Поле "Email\Login" не заполнено');
-        } elseif (!preg_match("/(\w+@[a-zA-Z_\.]+[a-zA-Z]{2,8})/", $_POST['email'])) {
+        } elseif (!preg_match("/(\w[a-zA-Z0-9_\.]+@[a-zA-Z_\.]+[a-zA-Z]{2,8})/", $_POST['email']))  {
             exit('Вы неправильно ввели E-mail');
         } else {
             $user['email'] = $_POST['email'];
