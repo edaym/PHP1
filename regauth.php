@@ -1,8 +1,10 @@
 <html>
 <body>
-<a href="<?php
-unset($_SESSION['login']);
-?>">Выход</a>
+
+<form method="POST">
+    <input type="submit" name="exit" value="Выйти"/>
+    <input type="submit" name="registration" value="Регистрация"/>
+</form>
 
 <?php echo '<p align="center" ><strong> Регистрация, авторизация и поиск по пользователям </strong></p>';
 session_start();
@@ -24,14 +26,20 @@ if (empty ($_SESSION['login'])) {
         $user = array();
         if (empty($_POST['name'])) {
             exit('Поле "Имя" не заполнено');
+        } elseif (!preg_match("/\w{2,}/", $_POST['name'])){ 
+            exit('В имени должно быть больше двух символов');
         } else {
             $user['name'] = $_POST['name'];
         }
+
         if (empty($_POST['email'])) {
             exit('Поле "Email\Login" не заполнено');
+        } elseif (!preg_match("/(\w+@[a-zA-Z_\.]+[a-zA-Z]{2,8})/", $_POST['email'])) {
+            exit('Вы неправильно ввели E-mail');
         } else {
             $user['email'] = $_POST['email'];
         }
+
         if (empty($_POST['pass'])) {
             exit('Одно из полей "Пароль" не заполнено');
         }
@@ -173,6 +181,11 @@ if (isset($_SESSION['login'])) {
         echo $poisk[isset($search)];
     }
 }
+
+if (isset($_POST['exit'])) {
+    unset($_SESSION['login']);
+}
+
 ?>
 
 
