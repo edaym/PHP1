@@ -42,11 +42,16 @@ if (empty ($_SESSION['login'])) {
 
         if (empty($_POST['pass'])) {
             exit('Одно из полей "Пароль" не заполнено');
+        }elseif //(!preg_match("/[-a-zA-Z0-9]{8,30}/", $_POST['email']) || ) {
+        (!preg_match("/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{7,25}/i", $_POST['pass'])){
+            exit('Пароль не соответствует правилу');
         }
-        if (empty($_POST['pass_again'])) {
-            exit('Одно из полей "Пароль" не заполнено');
+        elseif (empty($_POST['pass_again'])) {
+            exit('Введите подтверждение пароля');
+        } elseif (!preg_match("/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{7,25}/i", $_POST['pass_again'])){
+            exit('Подтверждение пароля не соответствует правилу');
         }
-        if ($_POST['pass'] != $_POST['pass_again']) {
+        elseif ($_POST['pass'] != $_POST['pass_again']) {
             exit('Пароли не совпадают');
         } else {
             $user['password'] = password_hash($_POST['pass'], PASSWORD_BCRYPT);
