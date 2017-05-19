@@ -7,6 +7,7 @@ if(!empty($_GET['code']) && isset($_GET['code'])){
  */
 if ($_SESSION['activate']== $_GET['code']) {
     echo "Аккаунт активирован" ;
+    echo ("Перейти в панель ". "<a href=\"/php/adminpanel/admin.php\">администратора</a><br/>");
 }
 
 /*

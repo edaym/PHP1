@@ -6,15 +6,16 @@
     <input type="submit" name="registration" value="Регистрация"/>
 </form>
 
-<?php echo '<p align="center" ><strong> Регистрация, авторизация и поиск по пользователям </strong></p>';
+<?php echo '<p align="center" ><strong> Регистрация </strong></p>';
 session_start();
+require_once 'database.php';
 $_SESSION['login'];
 $_SESSION['users'];
 $login=array();
 if (empty ($_SESSION['login'])) {
 
 ?>
-<form action="sendmail.php" method="POST">
+<form  method="POST" action="sendmail.php">
     <input type="text" name="name" placeholder="Name"/>
     <input type="text" name="email" placeholder="Email\Login"/>
     <input type="password" name="pass" placeholder="Password"/>
@@ -22,6 +23,7 @@ if (empty ($_SESSION['login'])) {
     <input type="submit" name="submitreg" value="Registration"/>
 </form>
 <?php
+/*
 if (isset($_POST['submitreg'])) {
     $user = array();
 
@@ -87,5 +89,5 @@ if (isset($_POST['submitreg'])) {
         exit;
     }
     header( "Location: http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] ); */
-}
+
 }
