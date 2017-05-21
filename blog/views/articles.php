@@ -20,11 +20,22 @@
                         <em>Опубликовоно: <?=$a['date']?></em>
                         <em>Категория: <?=$a['category']?></em>
                         <p><?=article_intro($a['content'])?></p>
+                        <p><img
+                                src="../blog/admin/<?=$a['imgsrc']?>"
+                                width="500" height="250"
+                                alt="Добавлена <?=date("d.m.Y H:i:s")?>"
+                            >
+                        <!--<p><img   нужно прописать запись пути миниатюры в базу данных? аналогично категории и img
+                                src="../blog/admin/img/<?//=$miniature?>"
+                                width="500" height="250"
+                                alt="Добавлена <?//=date("d.m.Y H:i:s")?>"
+                            >
+                        -->
                     </div>
                 <?php endforeach ?>
             </div>
             <div class="footer">
-                <p>НЕ укради<br>Copyright &copy; 2016</p>
+                <p>НЕ укради<br>Copyright &copy; 2017</p>
             </div>
         </div>
     </body>

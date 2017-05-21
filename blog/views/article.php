@@ -15,7 +15,15 @@
                     <em>Опубликовоно: <?=$article['date']?></em>
                     <em>Категория: <?=$article['category']?></em>
                     <p><?=$article['content']?></p>
+                    <p><img
+                            src="admin/<?=$article['imgsrc']?>"
+                            width="700" height="450"
+                            alt="Добавлена <?=date("d.m.Y H:i:s")?>"
+                        >
                 </div>
+                <a href="index.php">
+                    <button class="btn btn-small btn-primary" type="button">Назад</button>
+                </a>
             </div>
             <div class="footer">
                 <p>НЕ укради<br>Copyright &copy; 2016</p>

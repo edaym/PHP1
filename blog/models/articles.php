@@ -1,6 +1,6 @@
 <?php
     header("Content-Type: text/html; charset=utf-8");
-//require_once 'database.php';
+//require_once '../database.php';
     function article_all($link){
         // Запрос
         $query = "SELECT * FROM `articles` ORDER BY id DESC";
@@ -40,19 +40,20 @@
         return $article;
     }
 
-    function article_new($link, $title, $date, $content, $category){
+    function article_new($link, $title, $date, $content, $category, $img){
         // Подготовка
         $title = trim($title);
         $content = trim($content);
         $category = trim ($category);
+        $img = trim ($img);
         // Проверка
         if ($title == '')
             return false;
         // Запрос
-        $t = "INSERT INTO articles (title, date, content, category) VALUE ('%s', '%s', '%s', '%s')";
+        $t = "INSERT INTO articles (title, date, content, category, imgsrc) VALUE ('%s', '%s', '%s', '%s', '%s')";
         
         //$query = sprintf($t, mysqli_real_escape_string($link, $title), mysqli_real_escape_string($link, $date), mysqli_real_escape_string($link, $content));
-        $query = sprintf($t, $title, $date, $content, $category);
+        $query = sprintf($t, $title, $date, $content, $category, $img);
 
         //$result = mysqli_query($link, $query);
         $result = $link->query ($query);
@@ -63,23 +64,24 @@
         return true;
     }
 
-    function article_edit($link, $id, $title, $date, $content, $category){
+    function article_edit($link, $id, $title, $date, $content, $category, $img){
         // Подготовка
         $title = trim($title);
         $content = trim($content);
         $date = trim($date);
         $id = (int)$id;
         $category = trim($category);
+        $img = trim ($img);
         
         // Проверка
         if ($title == '')
             return false;
         
         // Запрос
-        $sql = "UPDATE articles SET title='%s', date='%s', content='%s', category='%s' WHERE id = %d";
+        $sql = "UPDATE articles SET title='%s', date='%s', content='%s', category='%s', imgsrc='%s' WHERE id = %d";
         
         //$query = sprintf($sql, mysqli_real_escape_string($link, $title), mysqli_real_escape_string($link, $date), mysqli_real_escape_string($link, $content), $id);
-        $query = sprintf($sql, $title, $date, $content, $category, $id);
+        $query = sprintf($sql, $title, $date, $content, $category, $img, $id);
 
         //$result = mysqli_query($link, $query);;
         $result = $link->query ($query);

@@ -8,10 +8,13 @@
    </head>
     <body>
         <div class="container">
-            <h1>Страница добавления статьи</h1>
+
+                <h1>Страница добавления статьи</h1>
+
+
             <h3>Форма добавления статьи</h3>
             <div>
-                <form class="form-horizontal" method="post" action="index.php?action=<?=$_GET['action']?>&id=<?=$_GET['id']?>">
+                <form class="form-horizontal" method="post" enctype="multipart/form-data" action="index.php?action=<?=$_GET['action']?>&id=<?=$_GET['id']?>">
                                         <div class="form-group">
                                             <label>
                                                 Категория
@@ -39,6 +42,13 @@
                     </label>
                     </div>
                     <div class="form-group">
+                        <label>
+                        <input type="file" name="uploadfile" value="Обзор">
+                        </label>
+                    </div>
+
+
+                    <div class="form-group">
                     <label>
                         Содержимое
                         <textarea name="content" cols="150" rows="15" class="form-control" required><?=$article['content']?></textarea>
@@ -53,3 +63,6 @@
         </div>
     </body>
 </html>
+
+
+
